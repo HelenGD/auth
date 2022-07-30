@@ -4,6 +4,8 @@ import { Provider } from 'react-redux';
 import { Main } from 'pages/main';
 import { SignIn } from 'pages/sign-in';
 import { Layout } from './layout';
+import { AuthorizedRoute } from './authorized-route';
+import { GuestRoute } from './guest-route';
 import { store } from './store';
 
 export const App = () => {
@@ -12,8 +14,22 @@ export const App = () => {
       <BrowserRouter>
         <Routes>
           <Route element={<Layout />}>
-            <Route path="/" element={<Main />} />
-            <Route path="/sign-in" element={<SignIn />} />
+            <Route
+              path="/"
+              element={
+                <AuthorizedRoute>
+                  <Main />
+                </AuthorizedRoute>
+              }
+            />
+            <Route
+              path="/sign-in"
+              element={
+                <GuestRoute>
+                  <SignIn />
+                </GuestRoute>
+              }
+            />
           </Route>
         </Routes>
       </BrowserRouter>

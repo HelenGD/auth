@@ -1,1 +1,1 @@
-export { profileSlice } from './model';
+export { profileSlice, useProfile } from './model';
