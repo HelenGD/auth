@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import { Main } from 'pages/main';
-import { SignIn } from 'pages/sign-in';
+import { SignInPage } from 'pages/sign-in';
 import { Layout } from './layout';
 import { AuthorizedRoute } from './authorized-route';
 import { GuestRoute } from './guest-route';
@@ -26,7 +26,7 @@ export const App = () => {
               path="/sign-in"
               element={
                 <GuestRoute>
-                  <SignIn />
+                  <SignInPage />
                 </GuestRoute>
               }
             />
