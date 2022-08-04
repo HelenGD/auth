@@ -1,11 +1,11 @@
 import { Form, Formik } from 'formik';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { FieldEmail } from './field-email';
 import { FieldPassword } from './field-password';
 import { ButtonSubmit } from './button-submit';
 import { schema } from '../config/schema';
-import { authenticate } from '../api/authenticate';
 import { InputCaption } from 'shared/ui/input-caption';
+import { useAuthenticate } from '../hooks/use-authenticate';
 
 const initialValues = {
   email: '',
@@ -13,7 +13,7 @@ const initialValues = {
 };
 
 export const SignInForm: FC = () => {
-  const [error, setError] = useState('');
+  const { error, onLogin } = useAuthenticate();
 
   return (
     <Formik
@@ -21,14 +21,9 @@ export const SignInForm: FC = () => {
       validationSchema={schema}
       onSubmit={(values, actions) => {
         actions.setSubmitting(true);
-        authenticate(values)
-          .then(console.warn)
-          .catch((e: Error) => {
-            setError(e.message);
-          })
-          .finally(() => {
-            actions.setSubmitting(false);
-          });
+        onLogin(values).finally(() => {
+          actions.setSubmitting(false);
+        });
       }}
       initialValues={initialValues}
     >

@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { profileSlice } from 'entities/profile';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 export const store = configureStore({
   reducer: {
@@ -14,3 +14,4 @@ export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
 export const useAppSelector = useSelector<RootState>;
+export const useAppDispatch: () => AppDispatch = useDispatch;
