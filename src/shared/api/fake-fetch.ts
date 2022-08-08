@@ -1,4 +1,6 @@
-export const fakeFetch = <T extends unknown>(input: T) =>
+import { requestStripe } from 'request-stripe';
+
+export const fakeFetch = <T>(input: T) =>
   new Promise((resolve, reject) => {
     setTimeout(() => {
       if (Math.random() > 0.5) {
@@ -8,4 +10,4 @@ export const fakeFetch = <T extends unknown>(input: T) =>
         reject(Error('5xx: Something went wrong'));
       }
     }, 1000);
-  });
+  }).finally(requestStripe());

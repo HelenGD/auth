@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import { Form, Formik } from 'formik';
+import { FC, useCallback } from 'react';
+import { Form, Formik, FormikHelpers } from 'formik';
 
 import { InputCaption } from 'shared/ui/input-caption';
 import { FieldEmail } from './field-email';
@@ -20,16 +20,22 @@ const initialValues: SignUpInput = {
 
 export const SignUpForm: FC = () => {
   const { error, onRegister } = useRegister();
+
+  const onSubmit = useCallback(
+    (values: SignUpInput, actions: FormikHelpers<SignUpInput>) => {
+      actions.setSubmitting(true);
+      onRegister(values).finally(() => {
+        actions.setSubmitting(false);
+      });
+    },
+    [onRegister]
+  );
+
   return (
     <Formik
       validateOnMount
       validationSchema={schema}
-      onSubmit={(values, actions) => {
-        actions.setSubmitting(true);
-        onRegister(values).finally(() => {
-          actions.setSubmitting(false);
-        });
-      }}
+      onSubmit={onSubmit}
       initialValues={initialValues}
     >
       <Form className="flex flex-col gap-y-3">

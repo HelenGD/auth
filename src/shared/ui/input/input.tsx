@@ -1,8 +1,8 @@
-import { ComponentProps, FC } from 'react';
+import { ComponentProps, FC, memo } from 'react';
 
 type Props = ComponentProps<'input'>;
 
-export const Input: FC<Props> = (props) => {
+const Input: FC<Props> = (props) => {
   return (
     <input
       type="text"
@@ -11,3 +11,6 @@ export const Input: FC<Props> = (props) => {
     />
   );
 };
+
+const InputMemo = memo(Input);
+export { InputMemo as Input };

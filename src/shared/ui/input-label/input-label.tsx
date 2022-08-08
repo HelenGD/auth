@@ -1,8 +1,8 @@
-import { ComponentProps, FC } from 'react';
+import { ComponentProps, FC, memo } from 'react';
 
 type Props = ComponentProps<'label'>;
 
-export const InputLabel: FC<Props> = (props) => {
+const InputLabel: FC<Props> = (props) => {
   return (
     <label
       htmlFor="unknown"
@@ -11,3 +11,6 @@ export const InputLabel: FC<Props> = (props) => {
     />
   );
 };
+
+const InputLabelMemo = memo(InputLabel);
+export { InputLabelMemo as InputLabel };

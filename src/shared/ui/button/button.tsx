@@ -1,8 +1,8 @@
-import { ComponentProps, FC } from 'react';
+import { ComponentProps, FC, memo } from 'react';
 
 type Props = ComponentProps<'button'>;
 
-export const Button: FC<Props> = (props) => {
+const Button: FC<Props> = (props) => {
   return (
     <button
       type="button"
@@ -11,3 +11,6 @@ export const Button: FC<Props> = (props) => {
     />
   );
 };
+
+const ButtonMemo = memo(Button);
+export { ButtonMemo as Button };

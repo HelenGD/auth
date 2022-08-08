@@ -1,10 +1,10 @@
 import { useField } from 'formik';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { Input } from 'shared/ui/input';
 import { InputCaption } from 'shared/ui/input-caption';
 import { InputLabel } from 'shared/ui/input-label';
 
-export const FieldPassword: FC = () => {
+const FieldPassword: FC = () => {
   const [field, meta] = useField<string>('password');
 
   return (
@@ -15,3 +15,6 @@ export const FieldPassword: FC = () => {
     </div>
   );
 };
+
+const FieldPasswordMemo = memo(FieldPassword);
+export { FieldPasswordMemo as FieldPassword };
