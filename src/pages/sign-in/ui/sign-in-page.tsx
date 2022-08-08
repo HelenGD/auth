@@ -1,12 +1,19 @@
 import { SignInForm } from 'features/sign-in';
-import { Card } from './card';
+import { AuthPage } from 'shared/ui/auth-page';
+import { Card } from 'shared/ui/card';
+import { Headline } from 'shared/ui/headline';
+import { Link } from 'shared/ui/link';
 
 export const SignInPage = () => {
   return (
-    <div className="h-screen w-screen flex place-content-center place-items-center bg-slate-50">
-      <Card title="Sign In">
+    <AuthPage>
+      <Card>
+        <Headline>
+          Sign In / <Link to="/sign-up">Sign Up</Link>
+        </Headline>
+
         <SignInForm />
       </Card>
-    </div>
+    </AuthPage>
   );
 };

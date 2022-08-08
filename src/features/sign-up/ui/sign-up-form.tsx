@@ -22,6 +22,7 @@ export const SignUpForm: FC = () => {
   const { error, onRegister } = useRegister();
   return (
     <Formik
+      validateOnMount
       validationSchema={schema}
       onSubmit={(values, actions) => {
         actions.setSubmitting(true);
